@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Insert <T> {
 
-	//Ρωτάει το χρήστη πόσα στοιχεία θέλει να εισάγει
+	//Asks the user how many data he would like to insert
 	public static int HowMany() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("How many data would you like to insert?");
@@ -12,8 +12,8 @@ public class Insert <T> {
 
 
 
-	/*Εισαγωγή δεδομένων από το χρήστη και προσθήκη τους σε μια LinkedList,με όρισμα x
-	τον αριθμό των δεδομένων από τη HowMany*/
+	/*Data input by the user,where they are added LinkedList,parameter x
+	is the number of data from HowMany*/
 	public static LinkedList<String> DataInput(int x) {
 		Scanner input = new Scanner(System.in);
 		String data;
