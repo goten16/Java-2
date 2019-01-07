@@ -35,7 +35,7 @@ public class EditData {
 		PresentData present = new PresentData
 		present.presentTable()
 		String choice = editD.menuOfChoices;
-		switch (choise) {
+		switch (choice) {
 			case '1' :
 				System.out.println("Please insert the Line number you want to change.");
 				Line = s.nextInt();
