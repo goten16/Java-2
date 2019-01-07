@@ -70,8 +70,8 @@ public class EditData {
 		System.out.println("CHOICE 2: CHANGE A COLUMN");
 		System.out.println("CHOICE 3: CHANGE A DATA ITEM");    // PI8ANH ALLAGH ONOMATOS
 
-		String theChoise = input.nextLine();
-		return theChoise ;
+		String theChoice = input.nextLine();
+		return theChoice ;
 
 	}
 
