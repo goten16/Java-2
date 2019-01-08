@@ -2,77 +2,56 @@ import java.util.*;
 
 public class Delete {
 
-	private int line;
-	private int column;
-	private String name;
-	private ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
-
-	public String act() {
-			Scanner s = new Scanner(System.in);
-			String choice = removeD.menu();
-			switch (choice) {
-				case '1' :
-					System.out.println("Please insert the line number you want to delete.");
-					Line = s.nextInt();
-					removeD.removeLine();
-					break;
-				case '2' :
-					System.out.println("Please insert the Coloumn number you want to delete.");
-					Column = s.nextInt();
-					removeD.removeColumn();
-					break;
-				case '3' :
-					System.out.println("Please first insert the Line number where is the object you want to delete.");
-					Line = s.nextInt();
-					System.out.println("Now insert the Column number");
-					Column = s.nextInt();
-					removeD.removeItem();
-					break;
-		}
+	public ArrayList<ArrayList<String>> DeleteData(ArrayList<ArrayList<String>> outer) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("What would you like to delete?");
+		System.out.println("Menu:");
+		System.out.println("Option 1: Delete data from the same position of each field");
+		System.out.println("Option 2: Delete entire field");
+		System.out.println("Option 3: Delete a data item");
+		int choice = s.nextInt();
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(outer);
+		switch (choice) {
+			case 1:
+				list = new ArrayList<ArrayList<String>>(removeDOF(list));
+				break;
+			case 2:
+				list = new ArrayList<ArrayList<String>>(removeField(list));
+				break;
+			case 3:
+				list = new ArrayList<ArrayList<String>>(removeItem(list));
+				break;
+			}
+		return list;
 	}
 
-	public String menu() {
-			Scanner input = new Scanner(System.in);
-			System.out.println("What would you like to delete?");
-			System.out.println("Menu:");
-			System.out.println("Option 1: Delete line");
-			System.out.println("Option 2: Delete column");
-			System.out.println("Option 3: Delete a data item");
-			String choice = input.nextLine();
-			return choice;
-	}
-
-	public ArrayList<ArrayList<String>> removeLine(ArrayList<ArrayList<String>> outer) {
-			Scanner s = new Scanner(System.in);
-			String data;
-			for (int i = 0; i < outer.size(); i++) {
-				ArrayList<String> inner = new ArrayList<String>(outer.get(i));
-				if (Line < inner.size()) {
-					inner.remove(Line);
+	public ArrayList<ArrayList<String>> removeDOF(ArrayList<ArrayList<String>> outer) {
+				Scanner s = new Scanner(System.in);
+				System.out.println("What's the position of the data you would like to delete?");
+				int pos = s.nextInt();
+				ArrayList<ArrayList<String>> list1 = new ArrayList<ArrayList<String>>(outer);
+				for (int i = 0; i < list1.size(); i++) {
+					list1.get(i).remove(pos-1);
 				}
-			}
-			return outer;
-	}
+				return list1;
+		}
 
-	public ArrayList<ArrayList<String>> removeColumn(ArrayList<ArrayList<String>> outer) {
-			Scanner s = new Scanner(System.in);
-			String data;
-			outer.get(Column).clear();
-			ArrayList<String> inner = new ArrayList<String>(outer.get(Column));
-			for(int i = 0; i < inner.size(); i++) {
-				inner.remove(Column);
-			}
-			outer.remove(Column, inner);
-			return outer;
-	}
+		public ArrayList<ArrayList<String>> removeField(ArrayList<ArrayList<String>> outer) {
+				Scanner s = new Scanner(System.in);
+				System.out.println("Which field would you like to delete?");
+				int choice = s.nextInt();
+				ArrayList<ArrayList<String>> list2 = new ArrayList<ArrayList<String>>(outer);
+				list2.get(choice-1).clear();
+				return list2;
+		}
 
-	public ArrayList<ArrayList<String>> removeItem(ArrayList<ArrayList<String>> outer) {
-			Scanner s = new Scanner(System.in);
-			String data;
-			ArrayList<String> inner = new ArrayList<String>(outer.get(Column));
-			data = s.nextLine();
-		    inner.remove(Line,data);
-		    outer.remove(Column,inner);
-			return outer;
-	}
+		public ArrayList<ArrayList<String>> removeItem(ArrayList<ArrayList<String>> outer) {
+				Scanner s = new Scanner(System.in);
+				System.out.println("Which specific data would you like to delete? Please type the position of the field and position of the data");
+				int posf = s.nextInt();
+				int pos = s.nextInt();
+				ArrayList<ArrayList<String>> list3 = new ArrayList<ArrayList<String>>(outer);
+				list3.get(posf-1).remove(pos-1);
+				return list3;
+		}
 }

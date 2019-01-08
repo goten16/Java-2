@@ -2,162 +2,98 @@ import java.util.*;
 
 public class EditData {
 
-	private int Line;
-	private int Column;
-	public EditData() {}
-
-	/*
-				//Takes the line I want to change
-				private void setLine(int newLine) {
-					Line = newLine;
-				}
-				//Returns the line I want to change
-				private int getLine() {
-					return Line;
-				}
-			
-				//Takes the column I want to change
-				private void setColumn(int newColumn) {
-					Column = newColumn;
-				}
-				//Returns the column I want to change
-				private int getColumn() {
-					return Column;
-				}                                               */
-
-	
-	private ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
-
-	    
 	//The method that materializes the data's change
-	public String doIt() {
+	public ArrayList<ArrayList<String>> doIt(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
-		PresentData present = new PresentData
-		present.presentTable()
-		String choice = editD.menuOfChoices;
+		PresentData present = new PresentData();
+		present.presentTable();
+		int choice = menuOfChoices();
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(outer);
 		switch (choice) {
-			case '1' :
-				System.out.println("Please insert the Line number you want to change.");
-				Line = s.nextInt();
-				editD.changeLine();
+			case 1:
+				list = new ArrayList<ArrayList<String>>(changeSPD(list));
 				break;
-			case '2' :
-				System.out.println("Please insert the Coloumn number you want to change.");
-				Column = s.nextInt();
-				editD.changeColumn();
+			case 2:
+				list = new ArrayList<ArrayList<String>>(changeField(list));
 				break;
-			case '3' :
-				System.out.println("Please first insert the Line number where is the object you want to change.");
-				Line = s.nextInt();
-				System.out.println("Now insert the Coloumn number");
-				Coloumn = s.nextInt();
-				editD.changeItem();
+			case 3:
+				list = new ArrayList<ArrayList<String>>(changeItem(list));
 				break;
-		}
 
-		//probolh olon ton stoixeion toy pinaka , olon ton dedomeon
+		}
+		return list;
 	}
 
-	
 	//Choose what I want from the menu
-	public String menuOfChoices() {
+	public int menuOfChoices() {
 
-		Scanner input = new Scanner(System.in);
+		Scanner s = new Scanner(System.in);
 
 		System.out.println("WHAT WOULD YOU LIKE TO DO?");
 		System.out.println("MENU OF CHOICES:");
-		System.out.println("CHOICE 1: CHANGE A LINE");
-		System.out.println("CHOICE 2: CHANGE A COLUMN");
-		System.out.println("CHOICE 3: CHANGE A DATA ITEM");    // PI8ANH ALLAGH ONOMATOS
+		System.out.println("CHOICE 1: CHANGE A SPECIFIC POSITION'S DATA");
+		System.out.println("CHOICE 2: CHANGE A FIELD");
+		System.out.println("CHOICE 3: CHANGE A DATA ITEM");
 
-		String theChoice = input.nextLine();
+		int theChoice = s.nextInt();
 		return theChoice ;
 
 	}
 
-	
+
 	//Choise 1: Change a line
-	public ArrayList<ArrayList<String>> changeLine(ArrayList<ArrayList<String>> outer) {
+	public ArrayList<ArrayList<String>> changeSPD(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
+		System.out.println("What's the position of the data you would like to edit?");
+		int pos = s.nextInt();
 		String data;
-		for(int i=0; i<outer.size() ; i++) {
+		ArrayList<ArrayList<String>> list1 = new ArrayList<ArrayList<String>>(outer);
+		for(int i=0; i<list1.size() ; i++) {
 			ArrayList<String> inner = new ArrayList<String>(outer.get(i));
-			if (Line<inner.size()) {
+			if (pos<inner.size()) {
 				System.out.printf("Please give the new %s you want to add. " , inner.get(0));
 				data = s.nextLine();
-				inner.set(Line,data);	
-				outer.get(i).clear();
-				outer.set(i,inner);
-			} 
+				inner.set(pos,data);
+				list1.get(i).clear();
+				list1.set(i,inner);
+			}
 		}
-		return outer;
+		return list1;
 	}
 
-	
+
 	//Choise 2: Change a column
-	public ArrayList<ArrayList<String>> changeColumn(ArrayList<ArrayList<String>> outer) {
+	public ArrayList<ArrayList<String>> changeField(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
+		System.out.println("Which field would you like to change?");
+		int pos = s.nextInt();
 		String data;
-		outer.get(Column).clear();
-		ArrayList<String> inner = new ArrayList<String>(outer.get(Column));
+		ArrayList<ArrayList<String>> list2 = new ArrayList<ArrayList<String>>(outer);
+		ArrayList<String> inner = new ArrayList<String>(list2.get(pos));
 		for(int i=0; i<inner.size() ; i++) {
 			System.out.printf("Please insert the data for position No.%d?\n", i+1);
 			data = s.nextLine();
-			inner.add(data);	
+			inner.add(data);
 		}
-		outer.set(Column,inner);
-		return outer;
+		outer.set(pos,inner);
+		return list2;
 	}
-	
-	
+
+
 	//Choise 3: Change a data item
 	public ArrayList<ArrayList<String>> changeItem(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
+		System.out.println("Which specific data would you like to change? Please type the position of the field and position of the data");
+		int posf = s.nextInt();
+		int pos = s.nextInt();
 		String data;
-		ArrayList<String> inner = new ArrayList<String>(outer.get(Column));
+		ArrayList<ArrayList<String>> list3 = new ArrayList<ArrayList<String>>(outer);
+		ArrayList<String> inner = new ArrayList<String>(list3.get(posf));
 		System.out.printf("Please insert the data");
-		data = s.nextLine();	
-	    inner.set(Line,data);
-	    outer.set(Coloumn,inner);
-		return outer;
+		data = s.nextLine();
+	    inner.set(pos,data);
+	    outer.set(posf,inner);
+		return list3;
 	}
-	
+
 }
-
-
-
-
-/*  CHANGE COLOUMN
-
-    Scanner s = new Scanner(System.in);
-	String data;
-	for(int i=0; i<outer.size() ; i++) {
-	ArrayList<String> inner = new ArrayList<String>(outer.get(i));
-		if (Line<inner.size()) {
-			//IF ARRAY SIZE>LINE
-			System.out.printf("Please give the new %s you want to add. " , inner.get(0));
-			data = s.nextLine();
-			inner.set(Line,data);
-			outer.get(i).clear();
-			outer.set(i,inner);
-		}else {
-			//IF ARRAY SIZE<LINE
-			System.out.println("There is no object in this Column. Do you want to add one?");
-			System.out.println("1.YES \n 2.NO \n");
-			int ans = s.nextInt();
-			if(ans==1){
-				int size = inner.size();
-				for(int j=size;j<Line;j++){
-					inner.add(null);
-				}
-				System.out.printf("Please give the new %s you want to add. " , inner.get(0));
-				data = s.nextLine();
-				inner.set(Line,data);
-				outer.get(i).clear();
-				outer.set(i,inner);
-			}
-		}
-	}
-	return outer;  
-	
-*/
