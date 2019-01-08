@@ -2,33 +2,14 @@ import java.util.*;
 
 public class PresentData {
 
-	public  void presentTable(LinkedList<pd> my_list) {
-		//χρηση set ωστε να μην εμφανιζονται ιδια δεδομενα που εχουν εισαχθει πανω απο μια φορα
-		Set<pd> s = new HashSet<>();
-		int i = 0;
-		for(pd data : my_list) {
-			i++;
-			if( i == 1) {
-				System.out.println(pd.type);
-				System.out.println();
+	public void presentTable(ArrayList<ArrayList<String>> outer) {
+		for (int i = 0; i < outer.size(); i++) {
+			for (int j = 0; j < outer.get(i).size(); j++) {
+				System.out.println(outer.get(i).get(j));
+				if (j == 0 || j == outer.get(i).size() - 1) {
+					System.out.println();
+				}
 			}
-			if(s.add(data) == true)
-			System.out.println(data);
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
