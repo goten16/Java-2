@@ -6,7 +6,7 @@ public class EditData {
 	public ArrayList<ArrayList<String>> doIt(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
 		PresentData present = new PresentData();
-		present.presentTable();
+		present.presentTable(outer);
 		int choice = menuOfChoices();
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(outer);
 		switch (choice) {
