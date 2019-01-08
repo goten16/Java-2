@@ -2,7 +2,7 @@ import java.util.*;
 
 public class EditData {
 
-	//The method that materializes the data's change
+	/**The method that materializes the data's change*/
 	public ArrayList<ArrayList<String>> doIt(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
 		PresentData present = new PresentData();
@@ -19,29 +19,23 @@ public class EditData {
 			case 3:
 				list = new ArrayList<ArrayList<String>>(changeItem(list));
 				break;
-
 		}
 		return list;
 	}
 
-	//Choose what I want from the menu
+	/**Choose what I want from the menu*/
 	public int menuOfChoices() {
-
 		Scanner s = new Scanner(System.in);
-
-		System.out.println("WHAT WOULD YOU LIKE TO DO?");
-		System.out.println("MENU OF CHOICES:");
-		System.out.println("CHOICE 1: CHANGE A SPECIFIC POSITION'S DATA");
-		System.out.println("CHOICE 2: CHANGE A FIELD");
-		System.out.println("CHOICE 3: CHANGE A DATA ITEM");
-
+		System.out.println("What would you like to edit?");
+		System.out.println("Menu:");
+		System.out.println("Option 1: Edit a specific position's data");
+		System.out.println("Option 2: Edit a field");
+		System.out.println("Option 3: Edit a data item");
 		int theChoice = s.nextInt();
 		return theChoice ;
-
 	}
 
-
-	//Choise 1: Change a line
+	/**Option 1: Edit a specific position's data*/
 	public ArrayList<ArrayList<String>> changeSPD(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("What's the position of the data you would like to edit?");
@@ -61,8 +55,7 @@ public class EditData {
 		return list1;
 	}
 
-
-	//Choise 2: Change a column
+	/**Option 2: Edit a field*/
 	public ArrayList<ArrayList<String>> changeField(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Which field would you like to change?");
@@ -79,8 +72,7 @@ public class EditData {
 		return list2;
 	}
 
-
-	//Choise 3: Change a data item
+	/**Option 3: Edit a data item*/
 	public ArrayList<ArrayList<String>> changeItem(ArrayList<ArrayList<String>> outer) {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Which specific data would you like to change? Please type the position of the field and position of the data");
