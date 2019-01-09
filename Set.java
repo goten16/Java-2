@@ -13,7 +13,6 @@ public class Set {
 		String field = s.nextLine();
 		inner.add(field);
 		outer.add(inner);
-		int counter = 0;
 		int k;
 		/**While the user wants to enter new fields the loop will continue to run,
 		it will stop when the loop variable becomes false*/
@@ -25,7 +24,6 @@ public class Set {
 				inner = new ArrayList<String>();
 				field=s.nextLine();
 				inner.add(field);
-				counter++;
 				outer.add(inner);
 			} else {
 				loop = false;
