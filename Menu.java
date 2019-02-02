@@ -69,6 +69,7 @@ public class Menu {
 							break;
 			}
 			System.out.println("What would you like to do next?");
+			showOptions();
 			ans = input.nextInt();
 			while ( ans < 1 || ans > 7 ) {
 				System.out.println("Invalid number, Please try again!");
