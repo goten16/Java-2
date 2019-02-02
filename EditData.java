@@ -46,7 +46,7 @@ public class EditData {
 			ArrayList<String> inner = new ArrayList<String>(outer.get(i));
 			if (pos<inner.size()) {
 				System.out.printf("Please give the new %s you want to add. " , inner.get(0));
-				data = s.nextLine();
+				data = s.next();
 				inner.set(pos,data);
 				list1.get(i).clear();
 				list1.set(i,inner);
@@ -62,11 +62,13 @@ public class EditData {
 		int pos = s.nextInt();
 		String data;
 		ArrayList<ArrayList<String>> list2 = new ArrayList<ArrayList<String>>(outer);
-		ArrayList<String> inner = new ArrayList<String>(list2.get(pos));
-		for(int i=0; i<inner.size() ; i++) {
-			System.out.printf("Please insert the data for position No.%d?\n", i+1);
-			data = s.nextLine();
-			inner.add(data);
+		ArrayList<String> inner = new ArrayList<String>(list2.get(pos-1));
+		int k = inner.size();
+		System.out.println(k);
+		for(int i=1; i < k ; i++) {
+			System.out.printf("Please insert the data for position No.%d?\n", i);
+			data = s.next();
+			inner.set(i,data);
 		}
 		outer.set(pos,inner);
 		return list2;
@@ -80,11 +82,12 @@ public class EditData {
 		int pos = s.nextInt();
 		String data;
 		ArrayList<ArrayList<String>> list3 = new ArrayList<ArrayList<String>>(outer);
-		ArrayList<String> inner = new ArrayList<String>(list3.get(posf));
+		ArrayList<String> inner = new ArrayList<String>(list3.get(posf-1));
 		System.out.printf("Please insert the data");
-		data = s.nextLine();
+		System.out.println();
+		data = s.next();
 	    inner.set(pos,data);
-	    outer.set(posf,inner);
+	    outer.set(posf-1,inner);
 		return list3;
 	}
 

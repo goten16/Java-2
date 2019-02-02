@@ -20,9 +20,9 @@ public class Set {
 			System.out.println("Would you like to insert another field: 1.Yes\n2.No");
 			k = s.nextInt();
 			if (k == 1) {
-				System.out.println("Insert field's data: ");
+				System.out.println("Insert field's name: ");
 				inner = new ArrayList<String>();
-				field=s.nextLine();
+				field=s.next();
 				inner.add(field);
 				outer.add(inner);
 			} else {
