@@ -64,13 +64,13 @@ public class EditData {
 		ArrayList<ArrayList<String>> list2 = new ArrayList<ArrayList<String>>(outer);
 		ArrayList<String> inner = new ArrayList<String>(list2.get(pos-1));
 		int k = inner.size();
-		System.out.println(k);
+		System.out.println();
 		for(int i=1; i < k ; i++) {
 			System.out.printf("Please insert the data for position No.%d?\n", i);
 			data = s.next();
 			inner.set(i,data);
 		}
-		outer.set(pos,inner);
+		list2.set(pos-1,inner);
 		return list2;
 	}
 
@@ -87,7 +87,7 @@ public class EditData {
 		System.out.println();
 		data = s.next();
 	    inner.set(pos,data);
-	    outer.set(posf-1,inner);
+	    list3.set(posf-1,inner);
 		return list3;
 	}
 
